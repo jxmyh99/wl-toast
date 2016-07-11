@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>toast</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <script src="http://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script>
+    <style>
+    html {
+        font-size: 20px;
+    }
+    
+    * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-touch-callout: none;
+    }
+    
+    a {
+        display: block;
+        height: 45px;
+        line-height: 45px;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 15px;
+        background-color: #04be02;
+        color: #fff;
+    }
+    </style>
+    <link rel="stylesheet" href="css/wlui.css">
+</head>
+
+<body>
+    <a herf="javascript:;" id="cancel">取消操作</a>
+    <a herf="javascript:;" id="stop">禁止操作</a>
+    <a herf="javascript:;" id="loading">loading</a>
+    <a herf="javascript:;" id="error">错误提示</a>
+    <a herf="javascript:;" id="ok">成功提示</a>
+    <a herf="javascript:;" id="text">文本提示</a>
+    <!-- 背景 -->
+    <div class="modal-mask"></div>
+    <!-- 内容块 -->
+    <div class="modal-box" style="display: none;">
+        <div class="toast-main">
+            <i class="toast-icon">图片</i>
+            <span>内容</span>
+        </div>
+    </div>
+    <!-- dialog -->
+    <div class="modal-mask dialog" style="display: none;"></div>
+    <div class="modal-box" style="display: none;">
+        <div class="dialog-hd">
+            <strong class="dialog-tt"></strong>
+        </div>
+        <div class="dialog-bd">dialog内容</div>
+        <div class="dialog-bd">
+            <p class="prompt-text">prompt-text</p>
+            <input type="text">
+        </div>
+        <div class="dialog-fd">
+            <a href="javascript:;" class="dialog-btn default">取消</a>
+            <a href="javascript:;" class="dialog-btn primary">确定</a>
+        </div>
+    </div>
+    <script src="js/toast.js"></script>
+    <script>
+    $('a').on('click', function(evetn) {
+        var id = evetn.target.id,
+            text = evetn.target.innerText;
+
+        $.toast(text, id, function() {
+            if (id === 'loading') {
+                setTimeout($.hideloading, 2500);
+            }
+            console.log(text);
+        })
+    })
+    </script>
+</body>
+
+</html>

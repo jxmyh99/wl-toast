@@ -1,0 +1,568 @@
+i,
+b {
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+/* toast,dialog,msg */
+
+
+/* 统一弹出层的背景 */
+
+.modal-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    -webkit-transition-duration: .3s;
+    -o-transition-duration: .3s;
+    transition-duration: .3s;
+    visibility: hidden;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+
+/* 统一弹出层背景显示 */
+
+.mask-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* toast专用的背景 */
+
+.toast {
+    background-color: transparent;
+}
+
+
+/* 统一弹出层内容设置 */
+
+.modal-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 13.5rem;
+    text-align: center;
+    border-radius: .35rem;
+    opacity: 0;
+    -webkit-transform: translate3d(-50%, -50%, 0) scale(1.185);
+    -ms-transform: translate3d(-50%, -50%, 0) scale(1.185);
+    -o-transform: translate3d(-50%, -50%, 0) scale(1.185);
+    transform: translate3d(-50%, -50%, 0) scale(1.185);
+    -webkit-transition-property: -webkit-transform, opacity;
+    transition-property: transform, opacity;
+    color: #3d4145;
+    visibility: hidden;
+}
+
+
+/* 弹出层内容显示 */
+
+.modal-box.modal-in {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition-duration: 400ms;
+    -o-transition-duration: 400ms;
+    transition-duration: 400ms;
+    -webkit-transform: translate3d(-50%, -50%, 0) scale(1);
+    -ms-transform: translate3d(-50%, -50%, 0) scale(1);
+    -o-transform: translate3d(-50%, -50%, 0) scale(1);
+    transform: translate3d(-50%, -50%, 0) scale(1);
+    z-index: 11000;
+}
+
+
+/* 弹出层内容隐藏 */
+
+.modal-box.modal-out {
+    opacity: 0;
+    z-index: 10999;
+    -webkit-transition-duration: 400ms;
+    -o-transition-duration: 400ms;
+    transition-duration: 400ms;
+    -webkit-transform: translate3d(-50%, -50%, 0) scale(1.185);
+    -ms-transform: translate3d(-50%, -50%, 0) scale(1.185);
+    -o-transform: translate3d(-50%, -50%, 0) scale(1.185);
+    transform: translate3d(-50%, -50%, 0) scale(1.185);
+}
+
+
+/* toast */
+
+.toast-main {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: auto;
+    background-color: rgba(40, 40, 40, .75);
+    border-radius: .4rem;
+    color: white;
+    padding: 1rem 1.5rem;
+    font-size: 0.8rem;
+    overflow: hidden;
+}
+
+
+/* 文字 */
+
+.toast-text .icon-toast {
+    display: none;
+}
+
+.toast-text .toast-main {
+    border-radius: 1rem;
+    padding: 0 .8rem;
+    height: 2rem;
+    line-height: 2rem;
+}
+
+@font-face {
+    font-family: 'toast';
+    src: url('toast.eot');
+    /* IE9*/
+    src: url('toast.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('toast.woff') format('woff'), /* chrome、firefox */
+    url('toast.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('toast.svg#iconfont') format('svg');
+    /* iOS 4.1- */
+}
+.toast-main span{
+    display: block;
+    margin-top: 0.4rem;
+}
+.icon-toast {
+    display: block;
+}
+
+.icon-toast:before {
+    font-family: 'toast';
+    font-size: 2.5rem;
+}
+
+
+/* 成功 */
+
+.toast-ok .icon-toast:before {
+    content: '\e731';
+}
+
+
+/* 错误 */
+.toast-error .icon-toast{
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.toast-error .icon-toast:before ,.toast-forbidden .icon-toast:before {
+    content: '\e72a';
+    color: #F76260;
+}
+
+.toast-error span ,.toast-forbidden span {
+    color: #F76260;
+}
+
+
+/* 取消 */
+
+.toast-cancel .icon-toast:before {
+    content: '\e725';
+}
+
+
+/* 禁止操作 */
+
+.toast-forbidden .icon-toast:before {
+    content: '\e724';
+}
+
+/* 文本操作 */
+.toast-text span{
+    margin-top: 0;
+}
+
+/* loading */
+
+.toast-loading .toast-main{
+    position: relative;
+}
+.toast-loading span{
+    display: block;
+    margin-top: 64%;
+}
+.toast-loading-main {
+    position: absolute;
+    width: 0;
+    z-index: 2000000000;
+    left: 50%;
+    top:40%;
+}
+
+.toast-loading-leaf {
+    position: absolute;
+    top: -1px;
+    opacity: .25
+}
+
+.toast-loading-leaf:before {
+    content: " ";
+    position: absolute;
+    width: 8.14px;
+    height: 3.08px;
+    background: #d1d1d5;
+    box-shadow: 0 0 1px rgba(0,0,0,.0980392);
+    border-radius: 1px;
+    -webkit-transform-origin: left 50% 0;
+    transform-origin: left 50% 0
+}
+
+.toast-loading-leaf_0 {
+    -webkit-animation: a 1.25s linear infinite;
+    animation: a 1.25s linear infinite
+}
+
+.toast-loading-leaf_0:before {
+    -webkit-transform: rotate(0deg) translate(7.92px);
+    transform: rotate(0deg) translate(7.92px)
+}
+
+.toast-loading-leaf_1 {
+    -webkit-animation: b 1.25s linear infinite;
+    animation: b 1.25s linear infinite
+}
+
+.toast-loading-leaf_1:before {
+    -webkit-transform: rotate(30deg) translate(7.92px);
+    transform: rotate(30deg) translate(7.92px)
+}
+
+.toast-loading-leaf_2 {
+    -webkit-animation: c 1.25s linear infinite;
+    animation: c 1.25s linear infinite
+}
+
+.toast-loading-leaf_2:before {
+    -webkit-transform: rotate(60deg) translate(7.92px);
+    transform: rotate(60deg) translate(7.92px)
+}
+
+.toast-loading-leaf_3 {
+    -webkit-animation: d 1.25s linear infinite;
+    animation: d 1.25s linear infinite
+}
+
+.toast-loading-leaf_3:before {
+    -webkit-transform: rotate(90deg) translate(7.92px);
+    transform: rotate(90deg) translate(7.92px)
+}
+
+.toast-loading-leaf_4 {
+    -webkit-animation: e 1.25s linear infinite;
+    animation: e 1.25s linear infinite
+}
+
+.toast-loading-leaf_4:before {
+    -webkit-transform: rotate(120deg) translate(7.92px);
+    transform: rotate(120deg) translate(7.92px)
+}
+
+.toast-loading-leaf_5 {
+    -webkit-animation: f 1.25s linear infinite;
+    animation: f 1.25s linear infinite
+}
+
+.toast-loading-leaf_5:before {
+    -webkit-transform: rotate(150deg) translate(7.92px);
+    transform: rotate(150deg) translate(7.92px)
+}
+
+.toast-loading-leaf_6 {
+    -webkit-animation: g 1.25s linear infinite;
+    animation: g 1.25s linear infinite
+}
+
+.toast-loading-leaf_6:before {
+    -webkit-transform: rotate(180deg) translate(7.92px);
+    transform: rotate(180deg) translate(7.92px)
+}
+
+.toast-loading-leaf_7 {
+    -webkit-animation: h 1.25s linear infinite;
+    animation: h 1.25s linear infinite
+}
+
+.toast-loading-leaf_7:before {
+    -webkit-transform: rotate(210deg) translate(7.92px);
+    transform: rotate(210deg) translate(7.92px)
+}
+
+.toast-loading-leaf_8 {
+    -webkit-animation: i 1.25s linear infinite;
+    animation: i 1.25s linear infinite
+}
+
+.toast-loading-leaf_8:before {
+    -webkit-transform: rotate(240deg) translate(7.92px);
+    transform: rotate(240deg) translate(7.92px)
+}
+
+.toast-loading-leaf_9 {
+    -webkit-animation: j 1.25s linear infinite;
+    animation: j 1.25s linear infinite
+}
+
+.toast-loading-leaf_9:before {
+    -webkit-transform: rotate(270deg) translate(7.92px);
+    transform: rotate(270deg) translate(7.92px)
+}
+
+.toast-loading-leaf_10 {
+    -webkit-animation: k 1.25s linear infinite;
+    animation: k 1.25s linear infinite
+}
+
+.toast-loading-leaf_10:before {
+    -webkit-transform: rotate(300deg) translate(7.92px);
+    transform: rotate(300deg) translate(7.92px)
+}
+
+.toast-loading-leaf_11 {
+    -webkit-animation: l 1.25s linear infinite;
+    animation: l 1.25s linear infinite
+}
+
+.toast-loading-leaf_11:before {
+    -webkit-transform: rotate(330deg) translate(7.92px);
+    transform: rotate(330deg) translate(7.92px)
+}
+
+@-webkit-keyframes a {
+    0%,0.01% {
+        opacity: .25
+    }
+
+    0.02% {
+        opacity: 1
+    }
+
+    60.01%,to {
+        opacity: .25
+    }
+}
+
+@-webkit-keyframes b {
+    0%,8.34333% {
+        opacity: .25
+    }
+
+    8.35333% {
+        opacity: 1
+    }
+
+    68.3433%,to {
+        opacity: .25
+    }
+}
+
+@-webkit-keyframes c {
+    0%,16.6767% {
+        opacity: .25
+    }
+
+    16.6867% {
+        opacity: 1
+    }
+
+    76.6767%,to {
+        opacity: .25
+    }
+}
+
+@-webkit-keyframes d {
+    0%,25.01% {
+        opacity: .25
+    }
+
+    25.02% {
+        opacity: 1
+    }
+
+    85.01%,to {
+        opacity: .25
+    }
+}
+
+@-webkit-keyframes e {
+    0%,33.3433% {
+        opacity: .25
+    }
+
+    33.3533% {
+        opacity: 1
+    }
+
+    93.3433%,to {
+        opacity: .25
+    }
+}
+
+@-webkit-keyframes f {
+    0% {
+        opacity: .270958333333333
+    }
+
+    41.6767% {
+        opacity: .25
+    }
+
+    41.6867% {
+        opacity: 1
+    }
+
+    1.67667% {
+        opacity: .25
+    }
+
+    to {
+        opacity: .270958333333333
+    }
+}
+
+@-webkit-keyframes g {
+    0% {
+        opacity: .375125
+    }
+
+    50.01% {
+        opacity: .25
+    }
+
+    50.02% {
+        opacity: 1
+    }
+
+    10.01% {
+        opacity: .25
+    }
+
+    to {
+        opacity: .375125
+    }
+}
+
+@-webkit-keyframes h {
+    0% {
+        opacity: .479291666666667
+    }
+
+    58.3433% {
+        opacity: .25
+    }
+
+    58.3533% {
+        opacity: 1
+    }
+
+    18.3433% {
+        opacity: .25
+    }
+
+    to {
+        opacity: .479291666666667
+    }
+}
+
+@-webkit-keyframes i {
+    0% {
+        opacity: .583458333333333
+    }
+
+    66.6767% {
+        opacity: .25
+    }
+
+    66.6867% {
+        opacity: 1
+    }
+
+    26.6767% {
+        opacity: .25
+    }
+
+    to {
+        opacity: .583458333333333
+    }
+}
+
+@-webkit-keyframes j {
+    0% {
+        opacity: .687625
+    }
+
+    75.01% {
+        opacity: .25
+    }
+
+    75.02% {
+        opacity: 1
+    }
+
+    35.01% {
+        opacity: .25
+    }
+
+    to {
+        opacity: .687625
+    }
+}
+
+@-webkit-keyframes k {
+    0% {
+        opacity: .791791666666667
+    }
+
+    83.3433% {
+        opacity: .25
+    }
+
+    83.3533% {
+        opacity: 1
+    }
+
+    43.3433% {
+        opacity: .25
+    }
+
+    to {
+        opacity: .791791666666667
+    }
+}
+
+@-webkit-keyframes l {
+    0% {
+        opacity: .895958333333333
+    }
+
+    91.6767% {
+        opacity: .25
+    }
+
+    91.6867% {
+        opacity: 1
+    }
+
+    51.6767% {
+        opacity: .25
+    }
+
+    to {
+        opacity: .895958333333333
+    }
+}
